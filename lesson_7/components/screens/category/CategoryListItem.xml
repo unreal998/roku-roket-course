@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--********** Copyright 2016 Roku Corp.  All Rights Reserved. **********-->
+
+ 
+<component name="CategoryListItem" extends="Group">
+ 
+<interface> 
+  <field id="itemContent" type="node" onChange="itemContentChanged"/>
+</interface>
+ 
+<script type="text/brightscript" uri="pkg:/components/screens/category/CategoryListItem.brs" />
+
+<children> 
+<LayoutGroup layoutDirection="horiz" vertAlignment="center" itemSpacings="20" translation="[0,25]" >
+    <LayoutGroup layoutDirection="vert" horizAlignment="center" itemSpacings="0" >
+        <Label id="itemText" font="font:MediumSystemFont" color="0xffff00ff" />
+    </LayoutGroup>
+</LayoutGroup>
+
+</children>
+
+</component>

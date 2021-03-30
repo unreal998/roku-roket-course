@@ -1,0 +1,73 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+<component name = "ContentMarkupGridItem" extends = "Group" >
+
+<interface> 
+    <field id = "itemContent" type = "node" onChange = "showcontent"/>
+    <field id = "focusPercent" type = "float" onChange = "showfocus"/> 
+  </interface>
+
+<script type = "text/brightscript" uri="pkg:\components\screens\content\ContentMarkupGridItem.brs" />
+
+  <children >
+    <Poster 
+      id="image"
+      translation="[0,0]"
+      width="300"
+      height="450"/>
+
+    <Rectangle 
+      color = "0x00000099"
+      translation="[0,0]" 
+      height = "30"
+      width = "50"
+    />
+
+    <Label 
+      id="lang"
+      translation="[10,0]" 
+      text="EN"
+      horizAlign ="left"
+      height = "30"
+      width = "50"
+      font = "font:SmallestSystemFont"/>
+    
+    <Rectangle 
+      color = "0x00000099"
+      translation="[220,0]" 
+      height = "30"
+      width = "80"
+    />
+    <Label 
+      id="year"
+      translation="[200,0]"
+      text="0.0"
+      horizAlign="right"
+      height="30"
+      width="90"
+      font = "font:SmallestSystemFont"/>
+    <Rectangle 
+      color = "0x00000099"
+      translation="[0,450]" 
+      height = "60"
+      width = "300"
+    />
+    <Label 
+      id="title"
+      text="MAIN Title"
+      translation="[0,460]"
+      horizAlign="center"
+      height="30"
+      width="300"
+      visible="false" />
+    
+    <Label 
+      id="rating"
+      text="2021"
+      translation="[0,465]"
+      horizAlign="center"
+      height="30"
+      width="300"
+      font = "font:MediumSystemFont" />
+
+  </children>
+</component>

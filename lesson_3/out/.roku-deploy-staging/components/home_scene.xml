@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="HomeScene" extends="Scene" initialFocus="categoryScreen">
+  <script type="text/brightscript" uri="pkg:/components/HomeScene.brs" />
+  <children>
+    <CategoryScreen
+      id="categoryScreen"
+      visible="true"
+      translation="[0,0]" />
+  </children>
+</component>

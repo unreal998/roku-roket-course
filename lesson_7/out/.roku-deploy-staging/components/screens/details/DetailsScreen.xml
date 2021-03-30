@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="DetailsScreen" extends="Group">
+	<interface>
+		<field id="content"
+		    type="node"
+		    alwaysnotify="true"
+		    onChange="OnContentChange" />
+		<field id="playButtonPressed"
+		    type="int"
+		    alwaysnotify="true"
+		    alias="playButton.buttonSelected" />
+    <field id="additionaldata"
+        type ="assocarray"
+        alwaysnotify="true"
+        onChange="onAdditional"/>
+	</interface>
+	<script type="text/brightscript" uri="pkg:/components/screens/details/DetailsScreen.brs" />
+	<children>
+    <Poster
+      id="thumbnail"
+      width="500"
+      height="750"
+      translation="[100,100]" />
+    
+    <Button
+      id="playButton"
+      text="PLAY"
+      translation="[150, 900]" />
+    
+    <Label
+      id="title"
+      font="font:LargeBoldSystemFont"
+      color="0xFFFFFF"
+      translation="[700,100]"
+      horizAlign="center"
+      width="1000"
+      wrap="true" />
+    
+    <Rectangle
+      translation="[680,580]"
+      color="#00000099"
+      height="350"
+      width="1140"/>
+    
+    <Label
+      id="description"
+      font="font:SmallSystemFont"
+      color="0xFFFFFF"
+			wrap="true"
+			width="1100"
+      maxLines="7"
+      translation="[700,600]" />
+    <Group 
+      id ="additionalInfo"
+      visible="false">
+
+      <Rectangle
+      translation="[680,230]"
+      color = "0xFFFFFF99"
+      height = "350"
+      width ="1140"/>
+
+      <Label
+        id="rating"
+        font="font:SmallSystemFont"
+        color="0x000000"
+			  wrap="true"
+			  width="250"
+        maxLines="1"
+        translation="[700,250]" />
+    
+      <Label
+        id="runtime"
+        font="font:SmallSystemFont"
+        color="0x000000"
+			  wrap="true"
+			  width="350"
+        maxLines="1"
+        translation="[700,300]" />
+    
+      <Label
+        id="relisedate"
+        font="font:SmallSystemFont"
+        color="0x000000"
+			  wrap="true"
+			  width="350"
+        maxLines="1"
+        translation="[700,350]" />
+    
+      <Label
+        id="tagline"
+        font="font:SmallSystemFont"
+        color="0x000000"
+			  wrap="true"
+			  width="1100"
+        maxLines="2"
+        translation="[700,450]" />
+    
+      <Label
+        id="produced"
+        font="font:SmallSystemFont"
+        color="0x000000"
+			  wrap="true"
+			  width="1100"
+        maxLines="1"
+        translation="[700,400]"/>
+    </Group>
+	</children>
+</component>

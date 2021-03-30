@@ -1,0 +1,25 @@
+{
+  "host": "http://api.themoviedb.org/3/movie/",
+  "categories": [
+    {
+      "title": "Popular Movies",
+      "feedUrl": "popular?api_key=4bc08ab955f501a524c27210af4c49f3"
+    },
+    {
+      "title": "Top rated",
+      "feedUrl": "top_rated?api_key=4bc08ab955f501a524c27210af4c49f3"
+    },
+    {
+      "title": "Upcomming",
+      "feedUrl": "upcoming?api_key=4bc08ab955f501a524c27210af4c49f3"
+    },
+    {
+      "title": "Error Test",
+      "feedUrl": "/broken_path"
+    },
+    {
+      "title": "Bad Data",
+      "feedUrl": "/roku_lessons/bad_data.json"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+
+<component name = "CategoriesContent" extends = "ContentNode" >
+
+  <children >
+
+    <CategoryListItemData
+      labelText = "UPCOMING"
+      feedUrl="http://api.themoviedb.org/3/movie/upcoming?api_key=4bc08ab955f501a524c27210af4c49f3"/>
+
+    <CategoryListItemData
+      labelText = "TOP RATED"
+      feedUrl="http://api.themoviedb.org/3/movie/top_rated?api_key=4bc08ab955f501a524c27210af4c49f3" />
+
+    <CategoryListItemData
+      labelText = "POPULAR"
+      feedUrl="http://api.themoviedb.org/3/movie/popular?api_key=4bc08ab955f501a524c27210af4c49f3"/>
+
+  </children>
+
+</component>

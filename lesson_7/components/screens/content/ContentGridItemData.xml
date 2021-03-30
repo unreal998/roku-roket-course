@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+ 
+<component name="ContentGridItemData" extends="ContentNode">
+ 
+<interface> 
+  <field id="year" type="string" />
+  <field id="lang" type="string" />
+  <field id="rating" type="string" />
+  <field id="movieid" type="string" />
+</interface>
+
+</component>

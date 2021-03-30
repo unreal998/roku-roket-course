@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<component name="CategoryScreen" extends="Group" >
+
+<interface>
+    <field id="selectedCategory" type="assocarray" />
+    <function name="updateConfig" />
+</interface>
+
+<script type="text/brightscript" uri="pkg:/components/screens/category/CategoryScreen.brs" />
+
+    <children>
+      <Label 
+        text="Categoty Screen"
+        translation="[50,50]"
+        horizAlign="center"
+        width="1820"/>
+
+      <Label 
+        id="Tytle" 
+        text="PICK A CATEGORY:" 
+        translation="[75,150]" />
+
+      <MarkupList
+        id="CategoryMarkupList"
+        itemComponentName="CategoryListItem"
+        itemSize="[300, 50]"
+        itemSpacing="[0, 20]"
+        translation="[100,200]" />
+
+</children>
+
+</component>

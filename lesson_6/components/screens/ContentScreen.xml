@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component   name="ContentScreen"   extends="Group"   initialFocus="contentGrid" >
-<script type="text/brightscript" uri="pkg:/components/screens/ContentScreen.brs" />
-<interface>
-  <field id="feedData"
-      type="assocarray"
-      onChange="onFeedChanged"
-      />
-  <field id="contentSelected"
-      type="assocarray"
-      alias="contentGrid.itemSelected"
-      />
-</interface>
-<children>
-  <Label
-    translation="[75, 75]"
-      id="header"
-      color="0xFFFFFF"
-      font="font:LargeBoldSystemFont"
-      text=""/>
-<PosterGrid
-  id="contentGrid"
-  translation="[100,175]"
-  basePosterSize="[500,280]"
-  itemSpacing="[110,110]"
-  caption1NumLines="1"
-  caption2NumLines="1"
-  numColumns="3"
-  numRows="4"
-  />
-
-</children>
-
+<component   name="ContentScreen"   extends="Group"   initialFocus="rowList" >
+    <script type="text/brightscript" uri="pkg:/components/screens/ContentScreen.brs" />
+    <interface>
+        <field id="feedData"
+        type="assocarray"
+        onChange="onFeedChanged"
+        />
+        <field id="contentSelected"
+        type="assocarray"
+        alias="rowList.itemSelected"
+        />
+    </interface>
+    <children>
+        <Label
+            translation="[75, 75]"
+            id="header"
+            color="0xFFFFFF"
+            font="font:LargeBoldSystemFont"
+            text=""/>
+        <RowList 
+            id = "rowList"
+            translation = "[130,160]"
+            itemComponentName = "RowListItem"
+            numRows = "2"
+            itemSize = "[ 1660, 512 ]"
+            rowItemSize = "[ [320, 512] ]"
+            itemSpacing = "[120, 80]"
+            showRowLabel = "[ true ]"
+            drawFocusFeedback = "true" 
+            variableWidthItems = "[ true ]"
+            vertFocusAnimationStyle = "fixedFocusWrap" 
+            rowFocusAnimationStyle = "fixedFocusWrap"/>
+    </children>
 </component>

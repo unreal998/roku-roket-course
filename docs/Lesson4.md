@@ -61,7 +61,7 @@ OK, let's go:
     ``` java
 
     function init()
-        m.categoryList=m.top.findNode("categoryList")
+        m.categoryList = m.top.findNode("categoryList")
         m.categoryList.setFocus(true)
     end function
     ```
@@ -98,13 +98,14 @@ OK, let's go:
     In the `components/screens` directory, create a file `ContentScreen.xml` and add the following:
     ``` xml
     <?xml version="1.0" encoding="utf-8" ?>
-    <component   name="ContentScreen"   extends="Group"   initialFocus="contentGrid" >
+    <component   name="ContentScreen"   extends="Group"   initialFocus="rowList" >
         <script type="text/brightscript" uri="pkg:/components/screens/ContentScreen.brs" />
         <interface>
           <field id="feedData"
               type="assocarray"
               onChange="onFeedChanged"
               />
+          <field id="contentSelected" type= "assocarray" alias="rowList.itemSelected"/>
         </interface>
         <children>
             <Label
@@ -113,16 +114,19 @@ OK, let's go:
               color="0xFFFFFF"
               font="font:LargeBoldSystemFont"
               text=""/>
-            <PosterGrid
-              id="contentGrid"
-              translation="[100,175]"
-              basePosterSize="[500,280]"
-              itemSpacing="[110,110]"
-              caption1NumLines="1"
-              caption2NumLines="1"
-              numColumns="3"
-              numRows="4"
-              />
+            <RowList 
+              id = "rowList"
+              translation = "[130,160]"
+              itemComponentName = "RowListItem"
+              numRows = "2"
+              itemSize = "[ 1660, 512 ]"
+              rowItemSize = "[ [320, 512] ]"
+              itemSpacing = "[120, 80]"
+              showRowLabel = "[ true ]"
+              drawFocusFeedback = "true" 
+              variableWidthItems = "[ true ]"
+              vertFocusAnimationStyle = "fixedFocusWrap" 
+              rowFocusAnimationStyle = "fixedFocusWrap"/>
         </children>
     </component>
     ```  
@@ -132,55 +136,70 @@ OK, let's go:
     ``` java
 
     sub init()
-        m.contentGrid = m.top.FindNode("contentGrid")
+        m.rowList = m.top.FindNode("rowList")
         m.header = m.top.FindNode("header")
     end sub  
 
     sub onFeedChanged(obj)
-        feed = obj.getData()
-        m.header.text = feed.title
-        postercontent = createObject("roSGNode","ContentNode")
-        for  i=0 to 5 step 1
-            node = createObject("roSGNode","ContentNode")
-            node.HDGRIDPOSTERURL = "http://10.0.0.42:8888/roku_lessons/images/thumbnail-comedy1.jpg"
-            node.SHORTDESCRIPTIONLINE1 = "ITEM No. "+ i.toStr()
-            node.SHORTDESCRIPTIONLINE2 = "This is a description."
-            postercontent.appendChild(node)
-        end for
-        showpostergrid(postercontent)
+      ? "onFeedChanged ContentScreen"
+      m.feed = obj.getData()
+      m.header.text = "rowList example"
+      showRowList(getRowListContentNode(m.feed.results))
     end sub  
 
-    sub showpostergrid(content)
-      m.contentGrid.content=content
-      m.contentGrid.visible=true
-      m.contentGrid.setFocus(true)
+    function getRowListContentNode(items)
+      node = createObject("roSGNode","ContentNode")
+        node.streamformat = "mp4"
+      subNode = createObject("roSGNode","ContentNode")
+        subNode.title = "Popular Films"
+        for each item in items
+          subsubNode = createObject("roSGNode","ContentNode")
+          if (item <> Invalid AND item.poster_path <> Invalid)
+            subsubNode.HDGRIDPOSTERURL  = addCorrectPath(item.poster_path)
+            subsubNode.SDGRIDPOSTERURL = addCorrectPath(item.poster_path)
+          end if
+          subsubNode.title = item.title
+          subNode.appendChild(subsubNode)
+        end for
+        node.appendChild(subNode)
+      return node
+    end function
+
+    sub showRowList(content)
+      ?"Content rowList "content.getChild(0)
+      m.rowlist.content = content
     end sub
+
     ```  
 
     This code creates some placeholder data to verify the PosterGrid is rendering correctly. The pattern is very similar to the data provided to the category list. There is a single parent node, then a `for` loop creates some dummy nodes to populate it.  
     Run the app and select a category, a grid of content should appear with the title from the JSON at the top of the screen:  
     <img src="screenshots/l4_contenttest.png" width="400"/>
 
-1. Finally, edit the `onFeedChanged()` function to use the data provided by the feed. Some of these properties will be used later when video playback is added to the app.
+1. Finally, edit the `getRowListContentNode()` function to use the data provided by the feed. Some of these properties will be used later when video playback is added to the app.
     ``` java
     
-    sub onFeedChanged(obj)
-        feed = obj.getData()
-        m.header.text = feed.title
-        postercontent = createObject("roSGNode","ContentNode")
-        for each item in feed.items
-            node = createObject("roSGNode","ContentNode")
-            node.streamformat = item.streamformat
-            node.title = item.title
-            node.url = item.url
-            node.description = item.description
-            node.HDGRIDPOSTERURL = item.thumbnail
-            node.SHORTDESCRIPTIONLINE1 = item.title
-            node.SHORTDESCRIPTIONLINE2 = item.description
-            postercontent.appendChild(node)
+    function getRowListContentNode(items)
+      node = createObject("roSGNode","ContentNode")
+        node.streamformat = "mp4"
+      subNode = createObject("roSGNode","ContentNode")
+        subNode.title = "Popular Films"
+        for each item in items
+          subsubNode = createObject("roSGNode","ContentNode")
+          if (item <> Invalid AND item.poster_path <> Invalid)
+            subsubNode.HDGRIDPOSTERURL  = addCorrectPath(item.poster_path)
+            subsubNode.SDGRIDPOSTERURL = addCorrectPath(item.poster_path)
+          end if
+          node.SHORTDESCRIPTIONLINE1 = item.title
+          node.SHORTDESCRIPTIONLINE2 = item.description
+          subsubNode.title = item.title
+          subNode.appendChild(subsubNode)
         end for
-        showpostergrid(postercontent)
-    end sub
+        node.appendChild(subNode)
+      return node
+    end function
+
+
     ```
     Check the results:  
     <img src="screenshots/l4_contentscreen.png" width="400"/>

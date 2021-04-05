@@ -25,10 +25,9 @@ end sub
 sub onContentSelected(obj)
 	' note that you do NOT get the content node you want, just an index.
 	selectedIndex = obj.getData()
-	? "content selectedIndex :";selectedIndex
-	' look up the index using this verbose, dumb technique.
-	item = m.contentScreen.findNode("contentGrid").content.getChild(selectedIndex)
-	m.detailsScreen.content = item
+	rowList = m.contentScreen.findNode("rowList")
+	rowListContent = rowList.content.getChild(0).getChild(selectedIndex)
+	m.detailsScreen.content = rowListContent
 	m.contentScreen.visible = false
 	m.detailsScreen.visible = true
 end sub
@@ -50,7 +49,7 @@ sub onFeedResponse(obj)
 	response = obj.getData()
 	'turn the JSON string into an Associative Array
 	data = parseJSON(response)
-	if data <> Invalid and data.items <> invalid
+	if data <> Invalid and data.results <> invalid
         'hide the category screen and show content screen
         m.categoryScreen.visible = false
         m.contentScreen.visible = true

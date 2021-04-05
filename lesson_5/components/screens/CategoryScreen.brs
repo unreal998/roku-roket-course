@@ -1,7 +1,8 @@
 function init()
-    m.categoryList=m.top.findNode("categoryList")
+    m.categoryList = m.top.findNode("categoryList")
     m.categoryList.setFocus(true)
 	m.top.observeField("visible", "onVisibleChange")
+	m.categoryList.vertFocusAnimationStyle = "floatingFocus"
 end function
 
 ' set proper focus to rowList in case if return from Content Screen

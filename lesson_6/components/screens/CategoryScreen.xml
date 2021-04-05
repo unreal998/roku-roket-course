@@ -5,29 +5,26 @@
   <script type="text/brightscript" uri="pkg:/components/screens/CategoryScreen.brs" />
   <interface>
     <field id="categorySelected"
-		    type="assocarray"
-		    alias="categoryList.itemSelected"
+          type="assocarray"
+          alias="categoryList.itemSelected"
         />
   </interface>
   <children>
-    <!-- color="0x000000" -->
     <Label
       translation="[75, 150]"
         id="env"
         font="font:LargeBoldSystemFont"
         text="PICK A CATEGORY:"/>
-    <RadioButtonList
+    <LabelList
       id="categoryList"
       translation="[100, 200]"
       itemSize="[400,48]"
     >
-    <!--    color="0x000000"
-        focusedColor="0xFF0000" -->
     <ContentNode id = "categories" role = "content" >
-      <CategoryNode title = "DRAMA" feedUrl="http://192.168.1.86:8888/roku_lessons/drama.json"/>
-      <CategoryNode title = "COMEDY" feedUrl="http://192.168.1.86:8888/roku_lessons/comedy.json"/>
-      <CategoryNode title = "HORROR" feedUrl="http://192.168.1.86:8888/roku_lessons/horror.json"/>
+      <CategoryNode title = "DRAMA" feedUrl="http://api.themoviedb.org/3/movie/popular?api_key=4bc08ab955f501a524c27210af4c49f3"/>
+      <CategoryNode title = "COMEDY" feedUrl="http://api.themoviedb.org/3/movie/top_rated?api_key=4bc08ab955f501a524c27210af4c49f3"/>
+      <CategoryNode title = "HORROR" feedUrl="http://api.themoviedb.org/3/movie/upcoming?api_key=4bc08ab955f501a524c27210af4c49f3"/>
     </ContentNode>
-  </RadioButtonList>
+  </LabelList>
   </children>
 </component>

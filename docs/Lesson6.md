@@ -239,7 +239,7 @@ OK, let's go:
     sub showErrorDialog(message)
     	m.errorDialog.title = "ERROR"
     	m.errorDialog.message = message
-    	m.errorDialog.visible=true
+    	m.errorDialog.visible = true
     	'tell the home scene to own the dialog so the remote behaves'
     	m.top.dialog = m.errorDialog
     end sub

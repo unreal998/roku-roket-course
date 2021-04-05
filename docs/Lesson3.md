@@ -22,7 +22,7 @@ OK, let's go:
             id="env"
             font="font:LargeBoldSystemFont"
             text="PICK A CATEGORY:"/>
-        <RadioButtonList
+        <LabelList
           id="categoryList"
           translation="[100, 200]"
           itemSize="[400,48]"
@@ -50,7 +50,7 @@ OK, let's go:
 1. Save and run the app. It's pretty lame, nothing happens and the category list is empty. Go back to `CategoryScreen.xml` and make this change:
 
     ``` xml
-    <RadioButtonList
+    <LabelList
       id="categoryList"
       translation="[100, 200]"
       itemSize="[400,48]"
@@ -60,7 +60,7 @@ OK, let's go:
       <ContentNode title = "COMEDY"/>
       <ContentNode title = "HORROR"/>
     </ContentNode>
-    </RadioButtonList>
+    </LabelList>
     ```
 
     Run it now as see the populated list:  
@@ -75,6 +75,7 @@ OK, let's go:
     function init()
         m.categoryList=m.top.findNode("categoryList")
         m.categoryList.setFocus(true)
+        m.categoryList.vertFocusAnimationStyle = "floatingFocus"
         m.categoryList.observeField("itemSelected", "onCategorySelected")
     end function  
 
@@ -153,7 +154,7 @@ In the `components` directory, add a directory called `models`. In `models`, add
     This node now inherits all the fields from ContentNode, and supports a new field called `feedUrl`.  Now we can wire up the selected category to a category feed on the network. **NOTICE** - ContentNode transforms to CategoryNode at this point.  Edit `CategoryScreen.xml` with the following code:  
 
     ``` xml
-    <RadioButtonList
+    <LabelList
       id="categoryList"
       translation="[100, 200]"
       itemSize="[400,48]"
@@ -163,7 +164,7 @@ In the `components` directory, add a directory called `models`. In `models`, add
       <CategoryNode title = "COMEDY" feedUrl="http://10.0.0.42:8888/roku_lessons/comedy.json"/>
       <CategoryNode title = "HORROR" feedUrl="http://10.0.0.42:8888/roku_lessons/horror.json"/>
     </ContentNode>
-    </RadioButtonList>
+    </LabelList>
     ```  
 
     Using `<CategoryNode>` automatically finds and uses the extended node we wrote. Now update the code in `CategoryScreen.brs`:  

@@ -26,9 +26,9 @@ In this lesson we will improve the back button handling, add a new screen to sho
     ``` java
 
     function init()
-        m.categoryList=m.top.findNode("categoryList")
+        m.categoryList = m.top.findNode("categoryList")
         m.categoryList.setFocus(true)
-    	m.top.observeField("visible", "onVisibleChange")
+    	  m.top.observeField("visible", "onVisibleChange")
     end function
 
     sub onVisibleChange()
@@ -45,7 +45,7 @@ In this lesson we will improve the back button handling, add a new screen to sho
     sub init()
         m.contentGrid = m.top.FindNode("contentGrid")
         m.header = m.top.FindNode("header")
-    	m.top.observeField("visible", "onVisibleChange")
+    	  m.top.observeField("visible", "onVisibleChange")
     end sub
 
     sub onVisibleChange()
@@ -168,12 +168,11 @@ In this lesson we will improve the back button handling, add a new screen to sho
     end function
 
     sub onContentSelected(obj)
-        selectedIndex = obj.getData()
-        ? "content selectedIndex :";selectedIndex
-        item = m.contentScreen.findNode("contentGrid").content.getChild(selectedIndex)
-        m.detailsScreen.content = item
-        m.contentScreen.visible = false
-        m.detailsScreen.visible = true
+      rowList = m.contentScreen.findNode("rowList")
+      rowListContent = rowList.content.getChild(0).getChild(selectedIndex)
+      m.detailsScreen.content = rowListContent
+      m.contentScreen.visible = false
+      m.detailsScreen.visible = true
     end sub
     ```
     
@@ -181,7 +180,7 @@ In this lesson we will improve the back button handling, add a new screen to sho
     ``` xml
         <field id="contentSelected"
         type="assocarray"
-        alias="contentGrid.itemSelected"
+        alias="rowList.itemSelected"
         />
      ```
     Run the app and select an item on the content screen to see the new details screen:
@@ -253,20 +252,20 @@ In this lesson we will improve the back button handling, add a new screen to sho
     
     function onKeyEvent(key, press) as Boolean
     	? "[HomeScene] onKeyEvent", key, press
-    	if key = "back" and press
-    		if m.contentScreen.visible
-    			m.contentScreen.visible=false
-    			m.categoryScreen.visible=true
+    	if (key = "back" and press)
+    		if (m.contentScreen.visible)
+    			m.contentScreen.visible = false
+    			m.categoryScreen.visible = true
     			m.categoryScreen.setFocus(true)
     			return true
-    		else if m.detailsScreen.visible
-    			m.detailsScreen.visible=false
-    			m.contentScreen.visible=true
+    		else if (m.detailsScreen.visible)
+    			m.detailsScreen.visible = false
+    			m.contentScreen.visible = true
     			m.contentScreen.setFocus(true)
     			return true
-    		else if m.videoplayer.visible
-    			m.videoplayer.visible=false
-    			m.detailsScreen.visible=true
+    		else if (m.videoplayer.visible)
+    			m.videoplayer.visible = false
+    			m.detailsScreen.visible = true
     			m.detailsScreen.setFocus(true)
     			return true
     		end if

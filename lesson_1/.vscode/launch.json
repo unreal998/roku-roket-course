@@ -9,7 +9,7 @@
             "type": "brightscript",
             "request": "launch",
             "name": "BrightScript Debug: Launch",
-            "host": "10.24.161.237",
+            "host": "192.168.5.122",
             "password": "1234",
             "rootDir": "${workspaceFolder}",
             "consoleOutput": "normal",
